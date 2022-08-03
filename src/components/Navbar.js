@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { alpha } from "@mui/material";
 //mui-icons
-import SpaIcon from "@mui/icons-material/Spa";
+import FoodBankIcon from "@mui/icons-material/FoodBank";
 import SearchIcon from "@mui/icons-material/Search";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
 
 //mui
 import {
   Stack,
+  Box,
   AppBar,
   Toolbar,
   Button,
@@ -39,13 +40,14 @@ const Navbar = () => {
             color="inherit"
             aria-label="menu"
             sx={{
+              my:1,
               display: {
-                md: "block",
+                md: "flex",
                 lg: "none",
               },
             }}
           >
-            <DragHandleIcon sx={{ padding: "0" }} />
+          <DragHandleIcon />
           </IconButton>
           <Stack
             direction="row"
@@ -55,18 +57,18 @@ const Navbar = () => {
               alignItems: "center",
             }}
           >
-            <SpaIcon />
+            <FoodBankIcon sx={{ fontSize: "2.5rem" }} />
             <Typography
-              variant="h6"
+              variant="h5"
               component="div"
               sx={{
                 display: {
-                  xs: "none",
-                  sm: "block",
+                  fontFamily: "Oswald",
+                  fontWeight: "500",
                 },
               }}
             >
-              SpaTeck
+              Fooda
             </Typography>
           </Stack>
         </Stack>

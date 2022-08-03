@@ -1,11 +1,11 @@
-import React from "react";
-
+import React,{useEffect} from "react";
 //mui
-import { Box, Stack } from "@mui/material";
-
+import { Box } from "@mui/material";
 //components
 import Navbar from "./components/Navbar";
 import Homepage from "./pages/Homepage";
+//redux
+import { useDispatch } from "react-redux";
 
 function App() {
   return (
