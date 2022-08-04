@@ -1,9 +1,14 @@
 import React, { useState } from "react";
+import SearchModal from "./SearchModal";
+import TemporaryDrawer from "./TemporaryDrawer";
 import { alpha } from "@mui/material";
 //mui-icons
 import FoodBankIcon from "@mui/icons-material/FoodBank";
 import SearchIcon from "@mui/icons-material/Search";
 import DragHandleIcon from "@mui/icons-material/DragHandle";
+import {useNavigate} from 'react-router-dom'
+import { useDispatch } from "react-redux";
+import { openDrawer } from "../redux/category/categoryAction";
 
 //mui
 import {
@@ -17,7 +22,10 @@ import {
 } from "@mui/material";
 
 const Navbar = () => {
-
+  const dispatch=useDispatch()
+  const navigate=useNavigate()
+  const [openModal, setOpenModal] = useState(false);
+  const closeModal = () => setOpenModal(false);
   return (
     <AppBar position="sticky">
       <Toolbar
@@ -40,14 +48,15 @@ const Navbar = () => {
             color="inherit"
             aria-label="menu"
             sx={{
-              my:1,
+              my: 1,
               display: {
                 md: "flex",
                 lg: "none",
               },
             }}
+            onClick={()=>dispatch(openDrawer(true))}
           >
-          <DragHandleIcon />
+            <DragHandleIcon />
           </IconButton>
           <Stack
             direction="row"
@@ -55,7 +64,9 @@ const Navbar = () => {
             sx={{
               justifyContent: "center",
               alignItems: "center",
+              cursor: "pointer",
             }}
+            onClick={() => navigate('/')}
           >
             <FoodBankIcon sx={{ fontSize: "2.5rem" }} />
             <Typography
@@ -74,6 +85,7 @@ const Navbar = () => {
         </Stack>
         <Stack direction="row">
           <Button
+            onClick={() => setOpenModal(true)}
             sx={{
               textTransform: "capitalize",
               display: "flex",
@@ -102,9 +114,11 @@ const Navbar = () => {
               Search...
             </Typography>
           </Button>
+          <SearchModal openModal={openModal} closeModal={closeModal} />
           <Button color="inherit">Login</Button>
         </Stack>
       </Toolbar>
+      <TemporaryDrawer />
     </AppBar>
   );
 };
