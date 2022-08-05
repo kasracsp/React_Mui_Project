@@ -1,8 +1,12 @@
 import React from 'react'
+import Navbar from '../components/Navbar'
 
 const Recipe = () => {
   return (
-    <div>Recipe</div>
+    <div>
+      <Navbar/>
+      <h1>hello</h1>
+    </div>
   )
 }
 

@@ -10,5 +10,27 @@ const openDrawer = (key) => {
     payload: key,
   };
 };
+const setFavoriteInitValue = (favorites) => {
+  return {
+    type: "SET_FAVORITE_INIT_VALUE",
+    payload: favorites,
+  };
+};
+const setFavorites=()=>{
+  return (dispatch)=>{
+    const initialFavoritesState = JSON.parse(
+      window.localStorage.getItem("favorites")
+    );
+    if (initialFavoritesState) {
+      dispatch(setFavoriteInitValue(initialFavoritesState));
+    }
+  }
+}
+const addFavorite = (key) => {
+  return {
+    type: "ADD_FAVORITE",
+    payload: key,
+  };
+};
 
-export {setCategory,openDrawer}
+export { setCategory, openDrawer, addFavorite, setFavorites };

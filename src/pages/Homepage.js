@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from "react";
 //mui
-import { Stack } from '@mui/material';
+import { Box, Stack } from "@mui/material";
 //components
 import Sidebar from "../components/Sidebar";
 import Feed from "../components/Feed";
 //redux
-import FetchFoods from '../redux/foods/FoodsAction';
-import { setCategory } from '../redux/category/categoryAction';
+import {FetchFoods} from "../redux/foods/FoodsAction";
+import { setCategory } from "../redux/category/categoryAction";
 import { useDispatch } from "react-redux";
+import Navbar from "../components/Navbar";
+import TemporaryDrawer from "../components/TemporaryDrawer";
 
 const Homepage = () => {
   const dispatch = useDispatch();
@@ -17,11 +19,15 @@ const Homepage = () => {
   }, []);
 
   return (
-    <Stack direction="row" justifyContent="center">
-      <Sidebar/>
-      <Feed />
-    </Stack>
+    <Box>
+      <Navbar isCategoryOn={true} />
+      <Stack direction="row" justifyContent="center">
+        <Sidebar />
+        <Feed />
+      </Stack>
+      <TemporaryDrawer />
+    </Box>
   );
-}
+};
 
-export default Homepage
+export default Homepage;

@@ -47,12 +47,6 @@ const categories = [
       "https://cdn-icons.flaticon.com/png/512/2095/premium/2095680.png?token=exp=1659564737~hmac=fab405e2a8c963d24deece7f7b7f67cf",
     name: "thai",
   },
-  {
-    title: "favorites",
-    image:
-      "https://cdn-icons.flaticon.com/png/512/3287/premium/3287041.png?token=exp=1659565683~hmac=a1234c4f4630e58fa96adbc705ba44be",
-    name: "favorites",
-  },
 ];
 
 export {categories}

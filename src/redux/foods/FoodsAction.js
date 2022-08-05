@@ -17,6 +17,7 @@ const FetchFoodsFailure = (error) => {
     payload: error,
   };
 };
+
 const FetchFoods = (type) => {
   return (dispatch) => {
     dispatch(FetchFoodsRequest());
@@ -35,4 +36,4 @@ const FetchFoods = (type) => {
   };
 };
 
-export default FetchFoods;
+export { FetchFoods, FetchFoodsSuccess };
