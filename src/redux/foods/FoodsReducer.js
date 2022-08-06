@@ -8,6 +8,7 @@ const foodsReducer=(state=initialState,action)=>{
   switch (action.type) {
     case "FETCH_FOODS_REQUEST":
       return {
+        ...state,
         loading: true,
       };
     case "FETCH_FOODS_SUCCESS":

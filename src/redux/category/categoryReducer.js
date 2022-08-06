@@ -5,7 +5,6 @@ const initialState = {
 };
 
 const categoryReducer = (state = initialState, action) => {
-  console.log(";favorite:", state.favorite);
   switch (action.type) {
     case "SET_CATEGORY":
       return {

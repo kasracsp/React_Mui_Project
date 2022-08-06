@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, Card, CardActions, CardContent, CardMedia, Checkbox, Divider, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 // import ReactMarkdown from "react-markdown";
 // import rehypeRaw from "rehype-raw";
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -12,12 +13,12 @@ import { isInFavorites } from "../helper/functions";
 const FoodCard = ({ food }) => {
   const categoryState=useSelector(state=>state.categoryState)
   const dispatch=useDispatch()
-  // console.log(categoryState.favorite);
+  const navigate=useNavigate()
   return (
     <Card
       sx={[
         {
-          width: "100%",
+          width: "80vw",
           maxWidth: "400px",
         },
         (theme) => ({
@@ -54,7 +55,9 @@ const FoodCard = ({ food }) => {
           checked={isInFavorites(food.id, categoryState.favorite)}
           onChange={() => dispatch(addFavorite(food))}
         />
-        <Button variant="text">More...</Button>
+        <Button variant="text" onClick={() => navigate(`/recipe/${food.id}`)}>
+          More...
+        </Button>
       </CardActions>
     </Card>
   );

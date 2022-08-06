@@ -11,7 +11,7 @@ const FoodSkeleton = () => {
   return (
     <Paper
       sx={{
-        width: "100%",
+        width: "80vw",
         maxWidth: "400px",
       }}
     >

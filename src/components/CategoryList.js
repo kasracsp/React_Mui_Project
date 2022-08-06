@@ -18,7 +18,11 @@ const CategoryList = () => {
   const categoryState=useSelector(state=>state.categoryState)
   const dispatch=useDispatch()
   const handleClick=(type)=>{
-    dispatch(FetchFoods(type));
+    if(type === 'favorites'){
+    dispatch(FetchFoodsSuccess(categoryState.favorite));
+    }else{
+      dispatch(FetchFoods(type));
+    }
     dispatch(setCategory(type));
     dispatch(openDrawer(false));
     window.scrollTo({
@@ -53,7 +57,7 @@ const CategoryList = () => {
         key="favorites"
         sx={{ width: "100%", borderRadius: 2, mb: 0.5 }}
         selected={categoryState.category === "favorites"}
-        onClick={() => dispatch(FetchFoodsSuccess(categoryState.favorite))}
+        onClick={() => handleClick('favorites')}
       >
         <ListItemIcon>
           <ListItemAvatar>
