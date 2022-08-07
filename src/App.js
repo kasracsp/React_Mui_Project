@@ -1,6 +1,6 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 //mui
-import { Box } from "@mui/material";
+import { Box, colors, createTheme, ThemeProvider } from "@mui/material";
 //components
 import Homepage from "./pages/Homepage";
 import Recipe from "./pages/Recipe";
@@ -8,21 +8,31 @@ import Recipe from "./pages/Recipe";
 import { useDispatch } from "react-redux";
 import { setFavorites } from "./redux/category/categoryAction";
 //router-dom
-import { Routes,Route,Navigate } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: colors.pink[500],
+    },
+  },
+});
 
 function App() {
-  const dispatch=useDispatch()
-  useEffect(()=>{
+  const dispatch = useDispatch();
+  useEffect(() => {
     dispatch(setFavorites());
-  },[])
+  }, []);
   return (
-    <Box>
-      <Routes>
-        <Route path='/' element={<Homepage />} />
-        <Route path='/recipe/:id' element={<Recipe />} />
-        <Route path='/*' element={<Navigate to='/'/>} />
-      </Routes>
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/recipe/:id" element={<Recipe />} />
+          <Route path="/*" element={<Navigate to="/" />} />
+        </Routes>
+      </Box>
+    </ThemeProvider>
   );
 }
 

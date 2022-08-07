@@ -48,7 +48,7 @@ const Feed = () => {
             </Grid>
           ))
         ) : foodsState.error ? (
-          <Typography variant="h1" color="error">
+          <Typography variant="h4" color="error">
             {foodsState.error}
           </Typography>
         ) : (

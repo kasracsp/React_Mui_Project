@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Navbar from "../components/Navbar";
+import RecipeSkeleton from "../skeleton/RecipeSkeleton";
 import { useParams } from "react-router-dom";
 //redux
 import { useSelector, useDispatch } from "react-redux";
@@ -9,17 +10,34 @@ import {
   Avatar,
   Box,
   Stack,
+  Paper,
   Typography,
+  Grid,
+  Table,
+  TableContainer,
+  TableHead,
+  TableBody,
+  TableRow,
+  TableCell,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
 } from "@mui/material";
-import { styled } from "@mui/material/styles";
 //mui-icons
 import GroupIcon from "@mui/icons-material/Group";
 import AccessAlarmIcon from "@mui/icons-material/AccessAlarm";
 import EnergySavingsLeafIcon from "@mui/icons-material/EnergySavingsLeaf";
 import BreakfastDiningIcon from "@mui/icons-material/BreakfastDining";
 import LocalDrinkIcon from "@mui/icons-material/LocalDrink";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+
+import { styled } from "@mui/material/styles";
+
+const MyAvatar = styled(Avatar)(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+  border: "1px solid",
+  borderColor: theme.palette.divider,
+}));
 
 const Recipe = () => {
   const dispatch = useDispatch();
@@ -34,21 +52,27 @@ const Recipe = () => {
     <Box>
       <Navbar />
       {recipeState.loading ? (
-        <Typography>loading...</Typography>
+        <RecipeSkeleton />
       ) : recipeState.error ? (
         <Typography>{recipeState.error}</Typography>
-      ) : (
+      ) : recipeState.recipe ? (
         <Stack
           spacing={5}
           sx={{
             width: "100%",
             justifyContent: "flex-start",
             alignItems: "center",
-            padding: {
+            px: {
               xs: 3,
               sm: 5,
               md: 10,
             },
+            pt: {
+              xs: 3,
+              sm: 5,
+
+            },
+            pb:10
           }}
         >
           <Typography
@@ -64,104 +88,109 @@ const Recipe = () => {
           >
             {recipeState.recipe.title}
           </Typography>
-          <Stack direction="row" spacing={2}>
-            <Stack
-              sx={{ justifyContent: "center", alignItems: "center" }}
-              spacing={1}
+          <Grid
+            container
+            spacing={2}
+            sx={{ justifyContent: "center", alignItems: "center" }}
+          >
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 1,
+              }}
             >
-              <Avatar
-                sx={{
-                  backgroundColor: "background.paper",
-                  border: "1px solid",
-                  borderColor: "divider",
-                }}
-              >
+              <MyAvatar>
                 <GroupIcon color="primary" />
-              </Avatar>
+              </MyAvatar>
               <Typography variant="subtitle2" color="text.secondary">
                 {recipeState.recipe.servings} person
               </Typography>
-            </Stack>
-            <Stack
-              sx={{ justifyContent: "center", alignItems: "center" }}
-              spacing={1}
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 1,
+              }}
             >
-              <Avatar
-                sx={{
-                  backgroundColor: "background.paper",
-                  border: "1px solid",
-                  borderColor: "divider",
-                }}
-              >
+              <MyAvatar>
                 <AccessAlarmIcon color="primary" />
-              </Avatar>
+              </MyAvatar>
               <Typography variant="subtitle2" color="text.secondary">
                 {recipeState.recipe.readyInMinutes} minutes
               </Typography>
-            </Stack>
-            <Stack
-              sx={{ justifyContent: "center", alignItems: "center" }}
-              spacing={1}
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 1,
+              }}
             >
-              <Avatar
-                sx={{
-                  backgroundColor: "background.paper",
-                  border: "1px solid",
-                  borderColor: "divider",
-                }}
-              >
+              <MyAvatar>
                 <BreakfastDiningIcon
                   sx={{ pointerEvents: "none" }}
                   color={recipeState.recipe.glutenFree ? "success" : "error"}
                 />
-              </Avatar>
+              </MyAvatar>
               <Typography variant="subtitle2" color="text.secondary">
                 gluten free
               </Typography>
-            </Stack>
-            <Stack
-              sx={{ justifyContent: "center", alignItems: "center" }}
-              spacing={1}
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 1,
+              }}
             >
-              <Avatar
-                sx={{
-                  backgroundColor: "background.paper",
-                  border: "1px solid",
-                  borderColor: "divider",
-                }}
-              >
+              <MyAvatar>
                 <EnergySavingsLeafIcon
                   sx={{ pointerEvents: "none" }}
                   color={recipeState.recipe.vagetarian ? "success" : "error"}
                 />
-              </Avatar>
+              </MyAvatar>
               <Typography variant="subtitle2" color="text.secondary">
                 vegetarian
               </Typography>
-            </Stack>
-            <Stack
-              sx={{ justifyContent: "center", alignItems: "center" }}
-              spacing={1}
+            </Grid>
+            <Grid
+              item
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                gap: 1,
+              }}
             >
-              <Avatar
-                sx={{
-                  backgroundColor: "background.paper",
-                  border: "1px solid",
-                  borderColor: "divider",
-                }}
-              >
+              <MyAvatar>
                 <LocalDrinkIcon
                   sx={{ pointerEvents: "none" }}
                   color={recipeState.recipe.dairyFree ? "success" : "error"}
                 />
-              </Avatar>
+              </MyAvatar>
               <Typography variant="subtitle2" color="text.secondary">
                 dairy free
               </Typography>
-            </Stack>
-          </Stack>
+            </Grid>
+          </Grid>
           <Box
             sx={{
+              position: "relative",
               width: "90%",
               maxWidth: "600px",
               "& img": {
@@ -177,7 +206,79 @@ const Recipe = () => {
               alt={recipeState.recipe.title}
             />
           </Box>
+          <TableContainer
+            component={Paper}
+            sx={{ width: "90%", maxWidth: "600px" }}
+          >
+            <Table aria-label="ingredients" sx={{ width: "100%" }}>
+              <TableHead>
+                <TableRow>
+                  <TableCell
+                    sx={{
+                      backgroundColor: "primary.main",
+                      color: "primary.contrastText",
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    Ingredients
+                  </TableCell>
+                  <TableCell
+                    sx={{
+                      backgroundColor: "primary.main",
+                      color: "primary.contrastText",
+                      fontSize: "1.2rem",
+                    }}
+                  >
+                    Measure
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {recipeState.recipe.extendedIngredients.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell
+                      sx={{
+                        "&:first-letter": {
+                          textTransform: "capitalize",
+                        },
+                      }}
+                    >
+                      {item.nameClean}
+                    </TableCell>
+                    <TableCell>
+                      {item.measures.metric.amount}{" "}
+                      {item.measures.metric.unitShort}
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+          <Paper sx={{ width: "90%", maxWidth: "600px", padding: 2 }}>
+            <Typography variant="h5">Preparation:</Typography>
+            <List sx={{ width: "100%" }}>
+              {recipeState.recipe.analyzedInstructions[0].steps.map((item) => (
+                <ListItem key={item.number}>
+                  <ListItemAvatar>
+                    <Avatar sx={{ backgroundColor: "primary.main" }}>
+                      {item.number}
+                    </Avatar>
+                  </ListItemAvatar>
+                  <ListItemText
+                    sx={{ width: "100%" }}
+                    primary={
+                      <Typography sx={{ wordBreak: "break-word" }}>
+                        {item.step}
+                      </Typography>
+                    }
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
         </Stack>
+      ) : (
+        <Typography variant="h5">some problem</Typography>
       )}
     </Box>
   );

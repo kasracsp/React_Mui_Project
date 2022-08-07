@@ -13,7 +13,7 @@ const recipeReducer = (state = initialState, action) => {
     case "FETCH_RECIPE_SUCCESS":
       return {
         loading: false,
-        recipe: action.payload,
+        recipe: {...action.payload},
       };
     case "FETCH_RECIPE_FAILURE":
       return {
