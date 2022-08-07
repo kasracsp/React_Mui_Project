@@ -9,6 +9,7 @@ const recipeReducer = (state = initialState, action) => {
     case "FETCH_RECIPE_REQUEST":
       return {
         loading: true,
+        recipe:[]
       };
     case "FETCH_RECIPE_SUCCESS":
       return {

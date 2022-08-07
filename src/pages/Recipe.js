@@ -42,7 +42,12 @@ const MyAvatar = styled(Avatar)(({ theme }) => ({
 const Recipe = () => {
   const dispatch = useDispatch();
   const recipeState = useSelector((state) => state.recipeState);
-  console.log(recipeState.recipe);
+
+if (recipeState.recipe && recipeState.recipe.analyzedInstructions){
+  console.log(recipeState.recipe.analyzedInstructions);
+
+}
+
   const params = useParams();
   useEffect(() => {
     dispatch(FetchRecipe(params.id));
@@ -70,9 +75,8 @@ const Recipe = () => {
             pt: {
               xs: 3,
               sm: 5,
-
             },
-            pb:10
+            pb: 10,
           }}
         >
           <Typography
@@ -234,30 +238,42 @@ const Recipe = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {recipeState.recipe.extendedIngredients.map((item) => (
-                  <TableRow key={item.id}>
-                    <TableCell
-                      sx={{
-                        "&:first-letter": {
-                          textTransform: "capitalize",
-                        },
-                      }}
-                    >
-                      {item.nameClean}
-                    </TableCell>
-                    <TableCell>
-                      {item.measures.metric.amount}{" "}
-                      {item.measures.metric.unitShort}
-                    </TableCell>
-                  </TableRow>
-                ))}
+                {recipeState.recipe.analyzedInstructions && recipeState.recipe.extendedIngredients.map(
+                  (item) => (
+                    <TableRow key={item.id}>
+                      <TableCell
+                        sx={{
+                          "&:first-letter": {
+                            textTransform: "capitalize",
+                          },
+                        }}
+                      >
+                        {item.nameClean}
+                      </TableCell>
+                      <TableCell>
+                        {item.measures.metric.amount}{" "}
+                        {item.measures.metric.unitShort}
+                      </TableCell>
+                    </TableRow>
+                  )
+                )}
               </TableBody>
             </Table>
           </TableContainer>
+          {/* <Paper sx={{ width: "90%", maxWidth: "600px", padding: 2 }}>
+            {recipeState.recipe.extendedIngredients.map((item) => (
+              <Box>
+                <Typography>{item.nameClean}</Typography>
+                <Typography>
+                  {item.measures.metric.amount} {item.measures.metric.unitShort}
+                </Typography>
+              </Box>
+            ))}
+          </Paper> */}
           <Paper sx={{ width: "90%", maxWidth: "600px", padding: 2 }}>
             <Typography variant="h5">Preparation:</Typography>
             <List sx={{ width: "100%" }}>
-              {recipeState.recipe.analyzedInstructions[0].steps.map((item) => (
+              {recipeState.recipe.analyzedInstructions && recipeState.recipe.analyzedInstructions[0].steps.map((item) => (
                 <ListItem key={item.number}>
                   <ListItemAvatar>
                     <Avatar sx={{ backgroundColor: "primary.main" }}>
