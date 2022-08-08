@@ -43,11 +43,6 @@ const Recipe = () => {
   const dispatch = useDispatch();
   const recipeState = useSelector((state) => state.recipeState);
 
-if (recipeState.recipe && recipeState.recipe.analyzedInstructions){
-  console.log(recipeState.recipe.analyzedInstructions);
-
-}
-
   const params = useParams();
   useEffect(() => {
     dispatch(FetchRecipe(params.id));
@@ -260,16 +255,6 @@ if (recipeState.recipe && recipeState.recipe.analyzedInstructions){
               </TableBody>
             </Table>
           </TableContainer>
-          {/* <Paper sx={{ width: "90%", maxWidth: "600px", padding: 2 }}>
-            {recipeState.recipe.extendedIngredients.map((item) => (
-              <Box>
-                <Typography>{item.nameClean}</Typography>
-                <Typography>
-                  {item.measures.metric.amount} {item.measures.metric.unitShort}
-                </Typography>
-              </Box>
-            ))}
-          </Paper> */}
           <Paper sx={{ width: "90%", maxWidth: "600px", padding: 2 }}>
             <Typography variant="h5">Preparation:</Typography>
             <List sx={{ width: "100%" }}>

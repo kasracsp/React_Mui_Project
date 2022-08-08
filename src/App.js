@@ -9,6 +9,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { setFavorites } from "./redux/category/categoryAction";
 //router-dom
 import { Routes, Route, Navigate } from "react-router-dom";
+import ContactUs from "./pages/ContactUs";
 
 
 
@@ -28,10 +29,11 @@ function App() {
   }, []);
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{backgroundColor:'background.default',color:'text.primary'}}>
+      <Box sx={{backgroundColor:'background.default',color:'text.primary',minHeight:'100vh'}}>
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/recipe/:id" element={<Recipe />} />
+          <Route path="/contactus" element={<ContactUs />} />
           <Route path="/*" element={<Navigate to="/" />} />
         </Routes>
       </Box>

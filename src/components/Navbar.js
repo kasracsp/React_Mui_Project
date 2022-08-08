@@ -33,6 +33,7 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import SettingsIcon from "@mui/icons-material/Settings";
 import Brightness4OutlinedIcon from "@mui/icons-material/Brightness4Outlined";
 import Brightness5OutlinedIcon from "@mui/icons-material/Brightness5Outlined";
+import EmailIcon from "@mui/icons-material/Email";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -147,6 +148,7 @@ const Navbar = (props) => {
             </Stack>
           </Stack>
           <Stack direction="row" spacing={0.5}>
+                <SearchModal openModal={openModal} closeModal={closeModal} />
             <Button
               onClick={() => setOpenModal(true)}
               sx={{
@@ -170,7 +172,7 @@ const Navbar = (props) => {
                   transform: "scale(1.1)",
                 },
               }}
-            >
+              >
               <SearchIcon />
               <Typography
                 sx={{
@@ -185,7 +187,6 @@ const Navbar = (props) => {
                 Search...
               </Typography>
             </Button>
-            <SearchModal openModal={openModal} closeModal={closeModal} />
             <Tooltip title="toggle mode" arrow>
               <IconButton
                 id="menu-button"
@@ -213,6 +214,31 @@ const Navbar = (props) => {
                 }}
               >
                 <SettingsIcon color="primary" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="contact us" arrow>
+              <IconButton
+                onClick={()=>navigate('/contactus')}
+                sx={{
+                  border: "1px solid",
+                  borderColor: "primary.main",
+                  bgcolor: (theme) =>
+                    alpha(theme.palette.background.paper, 0.93),
+                  border: "1px solid",
+                  bordercolor: "primary.main",
+                  borderRadius: "0.5rem",
+                  "&:hover": {
+                    backgroundColor: (theme) => theme.palette.background.paper,
+                  },
+                  "& svg": {
+                    transition: "375ms",
+                  },
+                  "&:hover svg": {
+                    transform: "scale(1.1)",
+                  },
+                }}
+              >
+                <EmailIcon color="primary" />
               </IconButton>
             </Tooltip>
             <Menu
