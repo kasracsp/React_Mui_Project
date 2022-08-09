@@ -7,6 +7,7 @@ import Recipe from "./pages/Recipe";
 //redux
 import { useDispatch,useSelector } from "react-redux";
 import { setFavorites } from "./redux/category/categoryAction";
+import { setStoredMode } from "./redux/mode/ModeAction";
 //router-dom
 import { Routes, Route, Navigate } from "react-router-dom";
 import ContactUs from "./pages/ContactUs";
@@ -26,6 +27,7 @@ function App() {
   });
   useEffect(() => {
     dispatch(setFavorites());
+    dispatch(setStoredMode());
   }, []);
   return (
     <ThemeProvider theme={theme}>

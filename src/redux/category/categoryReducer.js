@@ -32,7 +32,6 @@ const categoryReducer = (state = initialState, action) => {
         state.favorite.splice(index, 1);
       }
       window.localStorage.setItem("favorites", JSON.stringify(state.favorite));
-      // window.localStorage.clear()
       return {
         ...state,
       };

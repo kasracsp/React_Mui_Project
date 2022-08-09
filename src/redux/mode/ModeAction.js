@@ -5,4 +5,15 @@ const ChangeMode = (mode) => {
   };
 };
 
-export { ChangeMode };
+const setStoredMode=()=>{
+  return (dispatch)=>{
+    const initialModeState = JSON.parse(
+      window.localStorage.getItem("mode")
+    );
+    if (initialModeState) {
+      dispatch(ChangeMode(initialModeState));
+    }
+  }
+}
+
+export { ChangeMode, setStoredMode };

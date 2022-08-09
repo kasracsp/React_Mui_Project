@@ -233,9 +233,9 @@ const Recipe = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {recipeState.recipe.analyzedInstructions && recipeState.recipe.extendedIngredients.map(
-                  (item) => (
-                    <TableRow key={item.id}>
+                {recipeState.recipe.analyzedInstructions &&
+                  recipeState.recipe.extendedIngredients.map((item, index) => (
+                    <TableRow key={index}>
                       <TableCell
                         sx={{
                           "&:first-letter": {
@@ -250,31 +250,33 @@ const Recipe = () => {
                         {item.measures.metric.unitShort}
                       </TableCell>
                     </TableRow>
-                  )
-                )}
+                  ))}
               </TableBody>
             </Table>
           </TableContainer>
           <Paper sx={{ width: "90%", maxWidth: "600px", padding: 2 }}>
             <Typography variant="h5">Preparation:</Typography>
             <List sx={{ width: "100%" }}>
-              {recipeState.recipe.analyzedInstructions && recipeState.recipe.analyzedInstructions[0].steps.map((item) => (
-                <ListItem key={item.number}>
-                  <ListItemAvatar>
-                    <Avatar sx={{ backgroundColor: "primary.main" }}>
-                      {item.number}
-                    </Avatar>
-                  </ListItemAvatar>
-                  <ListItemText
-                    sx={{ width: "100%" }}
-                    primary={
-                      <Typography sx={{ wordBreak: "break-word" }}>
-                        {item.step}
-                      </Typography>
-                    }
-                  />
-                </ListItem>
-              ))}
+              {recipeState.recipe.analyzedInstructions &&
+                recipeState.recipe.analyzedInstructions[0].steps.map(
+                  (item, index) => (
+                    <ListItem key={index}>
+                      <ListItemAvatar>
+                        <Avatar sx={{ backgroundColor: "primary.main" }}>
+                          {item.number}
+                        </Avatar>
+                      </ListItemAvatar>
+                      <ListItemText
+                        sx={{ width: "100%" }}
+                        primary={
+                          <Typography sx={{ wordBreak: "break-word" }}>
+                            {item.step}
+                          </Typography>
+                        }
+                      />
+                    </ListItem>
+                  )
+                )}
             </List>
           </Paper>
         </Stack>
