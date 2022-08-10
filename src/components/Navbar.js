@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 //components
 import SearchModal from "./SearchModal";
 //router-dom
@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { openDrawer } from "../redux/category/categoryAction";
-import {ChangeMode} from '../redux/mode/ModeAction' 
+import { ChangeMode } from "../redux/mode/ModeAction";
 //mui
 import {
   alpha,
@@ -69,8 +69,24 @@ function ScrollTop(props) {
 }
 
 const Navbar = (props) => {
+  const [top, setTop] = useState(true);
+
+  useEffect(() => {
+    window.onscroll = () => scrollFunction();
+    const scrollFunction = () => {
+      if (
+        document.body.scrollTop > 0 ||
+        document.documentElement.scrollTop > 0
+      ) {
+        setTop(false);
+      } else {
+        setTop(true);
+      }
+    };
+  });
+
   const dispatch = useDispatch();
-  const modeState=useSelector(state=>state.modeState)
+  const modeState = useSelector((state) => state.modeState);
   const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const closeModal = () => setOpenModal(false);
@@ -82,14 +98,25 @@ const Navbar = (props) => {
   const handleCloseMode = () => {
     setAnchorEl(null);
   };
-  const handleMode=(event,updateFormats)=>{
+  const handleMode = (event, updateFormats) => {
     if (event.target.value !== modeState.mode) {
       dispatch(ChangeMode(updateFormats));
     }
-  }
+  };
   return (
     <Box component="header">
-      <AppBar>
+      <AppBar
+        elevation={top ? 0 : 3}
+        sx={{
+          backgroundColor: top ? "transparent" :
+          (theme) => alpha(theme.palette.primary.main, 0.85),
+          color: top ? "primary.main" : "primary.contrastText",
+          transition: "0.4s",
+          borderBottom:top?'1px solid':'none',
+          borderColor:'divider',
+          backdropFilter:'blur(20px)'
+        }}
+      >
         <Toolbar
           sx={{
             display: "flex",
@@ -148,7 +175,7 @@ const Navbar = (props) => {
             </Stack>
           </Stack>
           <Stack direction="row" spacing={0.5}>
-                <SearchModal openModal={openModal} closeModal={closeModal} />
+            <SearchModal openModal={openModal} closeModal={closeModal} />
             <Button
               onClick={() => setOpenModal(true)}
               sx={{
@@ -172,7 +199,7 @@ const Navbar = (props) => {
                   transform: "scale(1.1)",
                 },
               }}
-              >
+            >
               <SearchIcon />
               <Typography
                 sx={{
@@ -199,8 +226,6 @@ const Navbar = (props) => {
                   borderColor: "primary.main",
                   bgcolor: (theme) =>
                     alpha(theme.palette.background.paper, 0.93),
-                  border: "1px solid",
-                  bordercolor: "primary.main",
                   borderRadius: "0.5rem",
                   "&:hover": {
                     backgroundColor: (theme) => theme.palette.background.paper,
@@ -218,14 +243,12 @@ const Navbar = (props) => {
             </Tooltip>
             <Tooltip title="contact us" arrow>
               <IconButton
-                onClick={()=>navigate('/contactus')}
+                onClick={() => navigate("/contactus")}
                 sx={{
                   border: "1px solid",
                   borderColor: "primary.main",
                   bgcolor: (theme) =>
                     alpha(theme.palette.background.paper, 0.93),
-                  border: "1px solid",
-                  bordercolor: "primary.main",
                   borderRadius: "0.5rem",
                   "&:hover": {
                     backgroundColor: (theme) => theme.palette.background.paper,

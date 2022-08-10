@@ -8,7 +8,6 @@ import ReactPaginate from "react-paginate";
 
 const Feed = () => {
   const foodsState = useSelector((state) => state.foodsState);
-  console.log("foodsState", foodsState);
   const [currentItems, setCurrentItems] = useState([]);
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
@@ -18,8 +17,15 @@ const Feed = () => {
     const endOffset = itemOffset + itemsPerPage;
     setCurrentItems(foodsState.foods.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(foodsState.foods.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage, foodsState]);
-
+  }, [itemOffset, itemsPerPage]);
+  
+  useEffect(() => {
+    setItemOffset(0)
+    const endOffset = itemsPerPage;
+    setCurrentItems(foodsState.foods.slice(0, endOffset));
+    setPageCount(Math.ceil(foodsState.foods.length / itemsPerPage));
+  }, [foodsState]);
+  
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % foodsState.foods.length;
     setItemOffset(newOffset);
@@ -28,7 +34,6 @@ const Feed = () => {
     });
   };
 
-  console.log(foodsState, "current", currentItems);
   return (
     <Stack
       flex={4}

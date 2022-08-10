@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 //mui
 import { Box, colors, createTheme, ThemeProvider } from "@mui/material";
 //components
@@ -8,6 +8,8 @@ import Recipe from "./pages/Recipe";
 import { useDispatch,useSelector } from "react-redux";
 import { setFavorites } from "./redux/category/categoryAction";
 import { setStoredMode } from "./redux/mode/ModeAction";
+import { FetchFoods } from "./redux/foods/FoodsAction";
+import { setCategory } from "./redux/category/categoryAction";
 //router-dom
 import { Routes, Route, Navigate } from "react-router-dom";
 import ContactUs from "./pages/ContactUs";
@@ -28,6 +30,8 @@ function App() {
   useEffect(() => {
     dispatch(setFavorites());
     dispatch(setStoredMode());
+    dispatch(FetchFoods(""));
+    dispatch(setCategory(""));
   }, []);
   return (
     <ThemeProvider theme={theme}>
