@@ -12,19 +12,15 @@ const Feed = () => {
   const [pageCount, setPageCount] = useState(0);
   const [itemOffset, setItemOffset] = useState(0);
   const itemsPerPage = 10;
-
+  useEffect(()=>{
+    setItemOffset(0)
+  },[foodsState])
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
+    console.log('yes',itemOffset)
     setCurrentItems(foodsState.foods.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(foodsState.foods.length / itemsPerPage));
-  }, [itemOffset, itemsPerPage]);
-  
-  useEffect(() => {
-    setItemOffset(0)
-    const endOffset = itemsPerPage;
-    setCurrentItems(foodsState.foods.slice(0, endOffset));
-    setPageCount(Math.ceil(foodsState.foods.length / itemsPerPage));
-  }, [foodsState]);
+  }, [itemOffset, itemsPerPage, foodsState]);
   
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % foodsState.foods.length;
@@ -64,15 +60,15 @@ const Feed = () => {
           ))
         )}
       </Grid>
-      {foodsState.foods.length > itemsPerPage && (
-        <>
+      {!foodsState.loading && !foodsState.error &&
+      foodsState.foods.length > itemsPerPage && (
           <ReactPaginate
             breakLabel="..."
             nextLabel=">"
             onPageChange={handlePageClick}
             pageRangeDisplayed={3}
             pageCount={pageCount}
-            previousLabel='<'
+            previousLabel="<"
             renderOnZeroPageCount={null}
             containerClassName="pagination"
             pageLinkClassName="pagLink"
@@ -80,7 +76,6 @@ const Feed = () => {
             nextLinkClassName="pagBtn"
             activeLinkClassName="pagActive"
           />
-        </>
       )}
     </Stack>
   );
