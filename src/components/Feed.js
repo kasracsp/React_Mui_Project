@@ -36,7 +36,7 @@ const Feed = () => {
       mt={4}
       mb={6}
       sx={{
-        justifyContent: "center",
+        justifyContent: "start",
         alignItems: "center",
       }}
     >
