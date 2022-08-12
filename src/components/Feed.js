@@ -17,7 +17,6 @@ const Feed = () => {
   },[foodsState])
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    console.log('yes',itemOffset)
     setCurrentItems(foodsState.foods.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(foodsState.foods.length / itemsPerPage));
   }, [itemOffset, itemsPerPage, foodsState]);
@@ -37,7 +36,7 @@ const Feed = () => {
       mt={4}
       mb={6}
       sx={{
-        justifyContent: "flex-start",
+        justifyContent: "center",
         alignItems: "center",
       }}
     >
@@ -54,14 +53,15 @@ const Feed = () => {
           </Typography>
         ) : (
           currentItems.map((food) => (
-            <Grid item key={food.id}>
+            <Grid item key={food.id} sx={{width:'80vw',maxWidth:'400px'}}>
               <FoodCard food={food} />
             </Grid>
           ))
         )}
       </Grid>
-      {!foodsState.loading && !foodsState.error &&
-      foodsState.foods.length > itemsPerPage && (
+      {!foodsState.loading &&
+        !foodsState.error &&
+        foodsState.foods.length > itemsPerPage && (
           <ReactPaginate
             breakLabel="..."
             nextLabel=">"
@@ -76,7 +76,7 @@ const Feed = () => {
             nextLinkClassName="pagBtn"
             activeLinkClassName="pagActive"
           />
-      )}
+        )}
     </Stack>
   );
 };

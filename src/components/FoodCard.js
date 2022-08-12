@@ -18,8 +18,7 @@ const FoodCard = ({ food }) => {
     <Card
       sx={[
         {
-          width: "80vw",
-          maxWidth: "400px",
+          width: "100%",
         },
         (theme) => ({
           "&:hover": {

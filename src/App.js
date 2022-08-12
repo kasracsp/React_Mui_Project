@@ -10,11 +10,10 @@ import { setFavorites } from "./redux/category/categoryAction";
 import { setStoredMode } from "./redux/mode/ModeAction";
 import { FetchFoods } from "./redux/foods/FoodsAction";
 import { setCategory } from "./redux/category/categoryAction";
+import { setInitialRecentSearch } from "./redux/recentSearch/RecentSearchAction";
 //router-dom
 import { Routes, Route, Navigate } from "react-router-dom";
 import ContactUs from "./pages/ContactUs";
-
-
 
 function App() {
   const dispatch = useDispatch();
@@ -32,6 +31,7 @@ function App() {
     dispatch(setStoredMode());
     dispatch(FetchFoods(""));
     dispatch(setCategory(""));
+    dispatch(setInitialRecentSearch());
   }, []);
   return (
     <ThemeProvider theme={theme}>

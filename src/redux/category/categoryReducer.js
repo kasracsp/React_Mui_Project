@@ -25,7 +25,6 @@ const categoryReducer = (state = initialState, action) => {
       const index = state.favorite.findIndex(
         (item) => item.id === action.payload.id
       );
-      console.log(index);
       if (index === -1) {
         state.favorite.push(action.payload);
       } else {
