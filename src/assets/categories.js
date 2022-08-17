@@ -7,13 +7,13 @@ const categories = [
   {
     title: "american",
     image:
-      "https://cdn-icons.flaticon.com/png/512/2505/premium/2505032.png?token=exp=1659570677~hmac=339ac65dc4000a5d4fbc6a212d78ea9c",
+      "https://cdn-icons.flaticon.com/png/512/2505/premium/2505032.png?token=exp=1660775077~hmac=07f4a8aaa5b2913767b04c4bd32655bd",
     name: "american",
   },
   {
     title: "british",
     image:
-      "https://cdn-icons.flaticon.com/png/512/1791/premium/1791088.png?token=exp=1659570767~hmac=52f2d635c3b9a0fcdbd847a6b302c636",
+      "https://cdn-icons.flaticon.com/png/512/1791/premium/1791053.png?token=exp=1660775144~hmac=dfb3a16e4d2d731bb38274ea7e72bbd1",
     name: "british",
   },
   {
@@ -44,7 +44,7 @@ const categories = [
   {
     title: "thai",
     image:
-      "https://cdn-icons.flaticon.com/png/512/2095/premium/2095680.png?token=exp=1659564737~hmac=fab405e2a8c963d24deece7f7b7f67cf",
+      "https://cdn-icons.flaticon.com/png/512/2095/premium/2095680.png?token=exp=1660775176~hmac=b0ceb2c450014892633c245f4042be84",
     name: "thai",
   },
 ];

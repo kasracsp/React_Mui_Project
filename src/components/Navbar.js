@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 //components
 import SearchModal from "./SearchModal";
 //router-dom
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { openDrawer } from "../redux/category/categoryAction";
@@ -87,7 +87,6 @@ const Navbar = (props) => {
 
   const dispatch = useDispatch();
   const modeState = useSelector((state) => state.modeState);
-  const navigate = useNavigate();
   const [openModal, setOpenModal] = useState(false);
   const closeModal = () => setOpenModal(false);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -108,13 +107,14 @@ const Navbar = (props) => {
       <AppBar
         elevation={top ? 0 : 3}
         sx={{
-          backgroundColor: top ? "transparent" :
-          (theme) => alpha(theme.palette.primary.main, 0.85),
+          backgroundColor: top
+            ? "transparent"
+            : (theme) => alpha(theme.palette.primary.main, 0.85),
           color: top ? "primary.main" : "primary.contrastText",
           transition: "0.4s",
-          borderBottom:top?'1px solid':'none',
-          borderColor:'divider',
-          backdropFilter:'blur(20px)'
+          borderBottom: top ? "1px solid" : "none",
+          borderColor: "divider",
+          backdropFilter: "blur(20px)",
         }}
       >
         <Toolbar
@@ -149,30 +149,23 @@ const Navbar = (props) => {
                 <DragHandleIcon />
               </IconButton>
             )}
-            <Stack
-              direction="row"
-              spacing={1}
+            <Button
               sx={{
-                justifyContent: "center",
-                alignItems: "center",
-                cursor: "pointer",
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+                color:top ? 'primary.main' : 'primary.contrastText',
+                '&:hover':{
+                  backgroundColor:'transparent'
+                }
               }}
-              onClick={() => navigate("/")}
+              disableRipple
+              component={Link}
+              size="large"
+              to="/"
+              startIcon={<FoodBankIcon/>}
             >
-              <FoodBankIcon sx={{ fontSize: "2.5rem" }} />
-              <Typography
-                variant="h5"
-                component="div"
-                sx={{
-                  display: {
-                    fontFamily: "Oswald",
-                    fontWeight: "500",
-                  },
-                }}
-              >
-                Fooda
-              </Typography>
-            </Stack>
+              Fooda
+            </Button>
           </Stack>
           <Stack direction="row" spacing={0.5}>
             <SearchModal openModal={openModal} closeModal={closeModal} />
@@ -243,7 +236,8 @@ const Navbar = (props) => {
             </Tooltip>
             <Tooltip title="contact us" arrow>
               <IconButton
-                onClick={() => navigate("/contactus")}
+                component={Link}
+                to='/contactus'
                 sx={{
                   border: "1px solid",
                   borderColor: "primary.main",

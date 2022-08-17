@@ -57,13 +57,13 @@ const CategoryList = () => {
         key="favorites"
         sx={{ width: "100%", borderRadius: 2, mb: 0.5 }}
         selected={categoryState.category === "favorites"}
-        onClick={() => handleClick('favorites')}
+        onClick={() => handleClick("favorites")}
       >
         <ListItemIcon>
           <ListItemAvatar>
             <Avatar
               sx={{ width: 30, height: 30 }}
-              src="https://cdn-icons.flaticon.com/png/512/3287/premium/3287041.png?token=exp=1659565683~hmac=a1234c4f4630e58fa96adbc705ba44be"
+              src="https://cdn-icons.flaticon.com/png/512/4340/premium/4340223.png?token=exp=1660775257~hmac=82704649f8aaa6a424985991f49dbd97"
               alt="favorites"
             />
           </ListItemAvatar>
